@@ -1,4 +1,3 @@
-import { GetServerSideProps } from "next";
 import * as React from "react";
 import { useEffect } from "react";
 export interface IDraggableContainerProps {}
@@ -9,7 +8,6 @@ import {
   DropResult,
   DraggingStyle,
   NotDraggingStyle,
-  resetServerContext,
 } from "react-beautiful-dnd";
 
 interface IListItem {

@@ -6,7 +6,6 @@ import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   resetServerContext();
-
   return (
     <div className={styles.container}>
       <Head>
