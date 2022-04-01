@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { resetServerContext } from "react-beautiful-dnd";
 import { DraggableContainer } from "../components/DraggableContainer";
+import { Menu } from "../components/Menu";
 import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
@@ -16,6 +17,7 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <DraggableContainer />
+        <Menu></Menu>
       </main>
     </div>
   );
