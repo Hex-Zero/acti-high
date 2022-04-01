@@ -1,5 +1,5 @@
 export function getListData(ListId: string): any[] {
-  return JSON.parse(localStorage.getItem(ListId) || "[]");
+  return JSON.parse(window.localStorage?.getItem(ListId) || "[]");
 }
 
 export function setListData(listId: string, list: any[]) {

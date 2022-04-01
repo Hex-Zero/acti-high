@@ -1,6 +1,7 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
+import { getListData } from "../hooks/useLocalMemory";
 import { ActivityCard } from "./ActivityCard";
 export interface IDraggableContainerProps {}
 
@@ -32,7 +33,7 @@ const getListStyle = (isDraggingOver: Boolean) => ({
 });
 
 export function DraggableContainer() {
-  const [items, setItems] = React.useState<IListItem[]>(getItems(10));
+  const [items, setItems] = React.useState<IListItem[]>([]);
 
   const handleDragEnd = (result: DropResult) => {
     // dropped outside the list
@@ -49,7 +50,9 @@ export function DraggableContainer() {
     setItems(resultingItems);
   };
 
-  useEffect(() => {}, []);
+  useEffect(() => {
+    setItems(getListData("ActivityList"));
+  }, []);
 
   return (
     <div className="draggable-container">
