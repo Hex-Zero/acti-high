@@ -4,9 +4,10 @@ import {
   DraggingStyle,
   NotDraggingStyle,
 } from "react-beautiful-dnd";
+import { IListItem } from "./DraggableContainer";
 
 export interface IActivityCardProps {
-  item: any;
+  item: IListItem;
   index: number;
 }
 

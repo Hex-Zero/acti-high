@@ -1,17 +1,10 @@
 import * as React from "react";
 import { useEffect } from "react";
-export interface IDraggableContainerProps {}
-import {
-  DragDropContext,
-  Droppable,
-  Draggable,
-  DropResult,
-  DraggingStyle,
-  NotDraggingStyle,
-} from "react-beautiful-dnd";
+import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { ActivityCard } from "./ActivityCard";
+export interface IDraggableContainerProps {}
 
-interface IListItem {
+export interface IListItem {
   id: string;
   content: string;
 }
