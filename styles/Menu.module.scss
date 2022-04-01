@@ -1,3 +1,64 @@
 .menuContainer{
-    background-color: bisque;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 400px;
+    max-width: 90%;
+    height: 100%;
+    background-color: #fcfcfc;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 11;
+    transform: translateX(400px);
+    transition: transform 0.3s ease-in-out;
+    &.active{
+        transform: translateX(0);
+    }   
+}
+
+.menuOverlay{
+    background-color: rgba(0,0,0,0.5);
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.closeButton{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    cursor: pointer;
+    &:before{
+        content: "";
+        left: -2px;
+        top: 11px;
+        display: block;
+        width: 30px;
+        height: 2px;
+    
+        background-color: black;
+        border:  2px solid rgb(0, 0, 0);
+        position: absolute;
+        transform: rotateZ(45deg);
+    }
+    &:after{
+        content: "";
+        left: -2px;
+        top: 11px;
+        display: block;
+        width: 30px;
+        height: 2px;
+        background-color: black;
+        border:  2px solid rgb(0, 0, 0);
+        position: absolute;
+        transform: rotateZ(-45deg);
+    }
 }
