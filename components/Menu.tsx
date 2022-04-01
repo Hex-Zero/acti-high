@@ -9,7 +9,13 @@ export function Menu(props: IMenuProps) {
     <div className={style.menuWrapper}>
       <div
         onClick={(e) => setIsOpen(!isOpen)}
-        className={style.menuOverlay}
+        className={`${style.menuButton} ${isOpen ? style.active : ""}`}
+      >
+        <div className={style.menuButtonLine}></div>
+      </div>
+      <div
+        onClick={(e) => setIsOpen(!isOpen)}
+        className={`${style.menuOverlay} ${isOpen ? style.active : ""}`}
       ></div>
       <div className={`${style.menuContainer} ${isOpen ? style.active : ""}`}>
         <span

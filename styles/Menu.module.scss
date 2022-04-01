@@ -26,7 +26,55 @@
     top: 0;
     left: 0;
     z-index: 10;
+    display: none;
+    &.active{
+        display: block;
+    }
 }
+
+.menuButton{
+    position: fixed;
+    width: 30px;
+    height: 30px;
+    top: 1rem;
+    right: 1rem;
+    &:before{
+        content: "";
+        left: -2px;
+        top: 11px;
+        display: block;
+        width: 30px;
+        height: 2px;
+        background-color: black;
+        border:  2px solid rgb(0, 0, 0);
+        position: absolute;
+        transform: translateY(-10px);
+    }
+    &:after{
+        content: "";
+        left: -2px;
+        top: 11px;
+        display: block;
+        width: 30px;
+        height: 2px;
+        background-color: black;
+        border:  2px solid rgb(0, 0, 0);
+        position: absolute;
+        transform: translateY(10px);
+    }
+    &>.menuButtonLine{
+        display: block;
+        width: 34px;
+        height: 5px;
+        background-color: black;
+        border:  2px solid rgb(0, 0, 0);
+        position: absolute;
+        transform: translate(-2px, 12px);
+    }
+    z-index: 1;
+}
+
+
 
 .closeButton{
     position: absolute;
@@ -43,7 +91,6 @@
         display: block;
         width: 30px;
         height: 2px;
-    
         background-color: black;
         border:  2px solid rgb(0, 0, 0);
         position: absolute;
