@@ -32,7 +32,12 @@ const getListStyle = (isDraggingOver: Boolean) => ({
   width: 250,
 });
 
-export function DraggableContainer() {
+interface IDraggableProps {
+  shouldReload: boolean;
+}
+
+export function DraggableContainer(props: IDraggableProps) {
+  const { shouldReload } = props;
   const [items, setItems] = React.useState<IListItem[]>([]);
 
   const handleDragEnd = (result: DropResult) => {
@@ -52,7 +57,7 @@ export function DraggableContainer() {
 
   useEffect(() => {
     setItems(getListData("ActivityList"));
-  }, []);
+  }, [shouldReload]);
 
   return (
     <div className="draggable-container">

@@ -1,7 +1,9 @@
 import * as React from "react";
 import style from "../styles/Menu.module.scss";
 
-export interface IMenuProps {}
+export interface IMenuProps {
+  onReload: () => void;
+}
 
 export function Menu(props: IMenuProps) {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -22,6 +24,13 @@ export function Menu(props: IMenuProps) {
           onClick={(e) => setIsOpen(!isOpen)}
           className={style.closeButton}
         />
+
+        <div
+          onClick={(e) => props.onReload()}
+          className={style.addButtonContainer}
+        >
+          Add new item
+        </div>
       </div>
     </div>
   );

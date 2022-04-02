@@ -1,5 +1,6 @@
 import type { NextPage } from "next";
 import Head from "next/head";
+import { useState } from "react";
 import { resetServerContext } from "react-beautiful-dnd";
 import { DraggableContainer } from "../components/DraggableContainer";
 import { Menu } from "../components/Menu";
@@ -7,6 +8,13 @@ import styles from "../styles/Home.module.css";
 
 const Home: NextPage = () => {
   resetServerContext();
+  const [shouldReload, setShouldReload] = useState(false);
+  const handleReload = () => {
+    setShouldReload(true);
+    setTimeout(() => {
+      setShouldReload(false);
+    }, 100);
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -16,8 +24,8 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <DraggableContainer />
-        <Menu></Menu>
+        <DraggableContainer shouldReload={shouldReload} />
+        <Menu onReload={handleReload}></Menu>
       </main>
     </div>
   );
