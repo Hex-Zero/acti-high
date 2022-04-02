@@ -27,7 +27,7 @@ const reorder = (list: IListItem[], startIndex: number, endIndex: number) => {
 };
 
 const getListStyle = (isDraggingOver: Boolean) => ({
-  background: isDraggingOver ? "lightblue" : "lightgrey",
+  background: "antiquewhite",
   padding: 8,
   width: 250,
 });
