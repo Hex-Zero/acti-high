@@ -39,6 +39,7 @@ interface IDraggableProps {
 export function DraggableContainer(props: IDraggableProps) {
   const { shouldReload } = props;
   const [items, setItems] = React.useState<IListItem[]>([]);
+  const [itemsToRemove, setItemsToRemove] = React.useState<IListItem[]>([]);
 
   const handleDragEnd = (result: DropResult) => {
     // dropped outside the list

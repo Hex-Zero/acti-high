@@ -1,11 +1,12 @@
 import * as React from "react";
+import { useState } from "react";
 import {
   Draggable,
   DraggingStyle,
   NotDraggingStyle,
 } from "react-beautiful-dnd";
+import style from "./ActivityCard.module.scss";
 import { IListItem } from "./DraggableContainer";
-
 export interface IActivityCardProps {
   item: IListItem;
   index: number;
@@ -31,6 +32,7 @@ const getItemStyle = (
 
 export function ActivityCard(props: IActivityCardProps) {
   const { item, index } = props;
+  const [shouldRemove, setShouldRemove] = useState(false);
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}>
       {(provided, snapshot) => (
@@ -42,6 +44,10 @@ export function ActivityCard(props: IActivityCardProps) {
             snapshot.isDragging,
             provided.draggableProps.style
           )}
+          className={[
+            style.activityCard,
+            shouldRemove ? style.remove : "",
+          ].join(" ")}
         >
           {item.content}
         </div>
