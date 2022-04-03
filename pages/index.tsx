@@ -2,6 +2,7 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import { useState } from "react";
 import { resetServerContext } from "react-beautiful-dnd";
+import { AddItem } from "../components/AddItem";
 import { DraggableContainer } from "../components/DraggableContainer";
 import { Menu } from "../components/Menu";
 import styles from "../styles/Home.module.css";
@@ -25,7 +26,8 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <DraggableContainer shouldReload={shouldReload} />
-        <Menu onReload={handleReload}></Menu>
+        <Menu onRemove={() => {}} onReload={handleReload}></Menu>
+        <AddItem onAdd={() => {}} isOpen={false}></AddItem>
       </main>
     </div>
   );
