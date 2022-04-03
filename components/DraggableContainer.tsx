@@ -1,7 +1,7 @@
 import * as React from "react";
 import { useEffect } from "react";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
-import { getListData } from "../hooks/useLocalMemory";
+import { getListData, removeItems } from "../hooks/useLocalMemory";
 import { ActivityCard } from "./ActivityCard";
 export interface IDraggableContainerProps {}
 
@@ -60,24 +60,58 @@ export function DraggableContainer(props: IDraggableProps) {
     setItems(getListData("ActivityList"));
   }, [shouldReload]);
 
+  const handleRemoveSelected = (item: IListItem) => {
+    console.log(`🦉 ~ item`, item);
+    const newItemsToRemove = [...itemsToRemove, item];
+    setItemsToRemove(newItemsToRemove);
+  };
+
+  const handleRemoveDeselected = (item: IListItem) => {
+    console.log(`🦉 ~ de item`, item);
+    const newItemsToRemove = itemsToRemove.filter((i) => i.id !== item.id);
+    setItemsToRemove(newItemsToRemove);
+  };
+
+  const handleRemoveItems = () => {
+    removeItems("ActivityList", itemsToRemove);
+    console.log(
+      `🦉 ~ itemsToRemove`,
+      removeItems("ActivityList", itemsToRemove)
+    );
+  };
+
   return (
-    <div className="draggable-container">
-      <DragDropContext onDragEnd={(e) => handleDragEnd(e)}>
-        <Droppable droppableId="droppable">
-          {(provided, snapshot) => (
-            <div
-              {...provided.droppableProps}
-              ref={provided.innerRef}
-              style={getListStyle(snapshot.isDraggingOver)}
-            >
-              {items.map((item, index) => (
-                <ActivityCard key={item.id} item={item} index={index} />
-              ))}
-              {provided.placeholder}
-            </div>
-          )}
-        </Droppable>
-      </DragDropContext>
-    </div>
+    <>
+      <div className="draggable-container">
+        <div>
+          Remove Selected
+          <button onClick={handleRemoveItems}>Yes</button>
+        </div>
+
+        <DragDropContext onDragEnd={(e) => handleDragEnd(e)}>
+          <Droppable droppableId="droppable">
+            {(provided, snapshot) => (
+              <div
+                {...provided.droppableProps}
+                ref={provided.innerRef}
+                style={getListStyle(snapshot.isDraggingOver)}
+              >
+                {items.map((item, index) => (
+                  <ActivityCard
+                    onRemoveSelected={handleRemoveSelected}
+                    onRemoveDeselected={handleRemoveDeselected}
+                    removeActive={true}
+                    key={item.id}
+                    item={item}
+                    index={index}
+                  />
+                ))}
+                {provided.placeholder}
+              </div>
+            )}
+          </Droppable>
+        </DragDropContext>
+      </div>
+    </>
   );
 }

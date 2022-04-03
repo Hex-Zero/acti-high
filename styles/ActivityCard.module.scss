@@ -1,6 +1,12 @@
 .activityCard{
-    background-color: white;
+    background-color: #ffc3a0;
+    
+  padding: 16px;
+  margin: 0 0 8px 0;
     &.remove{
         background-color: rebeccapurple;
+    }
+    &.dragging{
+        background-color: lightgreen;
     }
 }
