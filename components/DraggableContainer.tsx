@@ -10,6 +10,10 @@ export interface IListItem {
   content: string;
 }
 
+export interface IActivityItem extends IListItem {
+  priority: number;
+}
+
 // fake data generator
 const getItems = (count: number) =>
   Array.from({ length: count }, (v, k) => k).map((k) => ({
@@ -60,6 +64,10 @@ export function DraggableContainer(props: IDraggableProps) {
 
   useEffect(() => {
     setItems(getListData("ActivityList"));
+    console.log(
+      `🦉 ~ setItems(getListData("ActivityList"));`,
+      getListData("ActivityList")
+    );
   }, [shouldReload]);
 
   const handleRemoveSelected = (item: IListItem) => {

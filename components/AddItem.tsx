@@ -2,6 +2,7 @@ import * as React from "react";
 import { v4 as uuidv4 } from "uuid";
 import { addItems } from "../hooks/useLocalMemory";
 import style from "../styles/AddItem.module.scss";
+import { IActivityItem } from "./DraggableContainer";
 
 export interface IAddItemProps {
   isOpen: boolean;
@@ -12,13 +13,15 @@ export interface IAddItemProps {
 export function AddItem(props: IAddItemProps) {
   const { isOpen, onClose, onReload } = props;
   const [value, setValue] = React.useState("");
+  const [priority, setPriority] = React.useState(1);
 
   const handleAdd = () => {
     addItems("ActivityList", [
       {
         id: uuidv4(),
         content: value,
-      },
+        priority: priority,
+      } as IActivityItem,
     ]);
     onReload();
     onClose();
@@ -51,6 +54,17 @@ export function AddItem(props: IAddItemProps) {
             type="text"
             value={value}
             onChange={(e) => setValue(e.target.value)}
+          />
+          <input
+            onChange={(e) => setPriority(Number(e.target.value))}
+            value={priority}
+            className={[style.priorityInput].join(" ")}
+            type="number"
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                handleAdd();
+              }
+            }}
           />
         </label>
         <div onClick={handleAdd} className={[style.addButton].join(" ")}></div>
