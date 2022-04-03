@@ -1,20 +1,30 @@
 import * as React from "react";
+import { v4 as uuidv4 } from "uuid";
+import { addItems } from "../hooks/useLocalMemory";
 import style from "../styles/AddItem.module.scss";
 
 export interface IAddItemProps {
-  isOpen?: boolean;
-  onClose?: () => void;
+  isOpen: boolean;
+  onClose: () => void;
+  onReload: () => void;
 }
 
 export function AddItem(props: IAddItemProps) {
-  const { isOpen, onClose } = props;
+  const { isOpen, onClose, onReload } = props;
   const [value, setValue] = React.useState("");
 
   const handleAdd = () => {
-    console.log("Add item");
+    addItems("ActivityList", [
+      {
+        id: uuidv4(),
+        content: value,
+      },
+    ]);
+    onReload();
+    onClose();
   };
   const handleClose = () => {
-    onClose && onClose();
+    onClose();
   };
   return (
     <div className={[style.addItemContainer].join(" ")}>

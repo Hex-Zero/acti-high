@@ -12,10 +12,7 @@ const Home: NextPage = () => {
   const [shouldReload, setShouldReload] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const handleReload = () => {
-    setShouldReload(true);
-    setTimeout(() => {
-      setShouldReload(false);
-    }, 100);
+    setShouldReload(!shouldReload);
   };
   return (
     <div className={styles.container}>
@@ -33,6 +30,7 @@ const Home: NextPage = () => {
           onReload={handleReload}
         ></Menu>
         <AddItem
+          onReload={handleReload}
           onClose={() => setIsAddModalOpen(false)}
           isOpen={isAddModalOpen}
         ></AddItem>
