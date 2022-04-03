@@ -9,6 +9,12 @@ export function setListData(listId: string, list: any[]) {
 export function removeItems(listId: string, items: any[]) {
   const list = getListData(listId);
   const newList: any[] = [];
+
+  if (list.length === items.length) {
+    setListData(listId, []);
+    return newList;
+  }
+
   list.forEach((item) => {
     if (!items.find((i) => i.id === item.id)) {
       newList.push(item);

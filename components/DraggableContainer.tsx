@@ -61,23 +61,17 @@ export function DraggableContainer(props: IDraggableProps) {
   }, [shouldReload]);
 
   const handleRemoveSelected = (item: IListItem) => {
-    console.log(`🦉 ~ item`, item);
     const newItemsToRemove = [...itemsToRemove, item];
     setItemsToRemove(newItemsToRemove);
   };
 
   const handleRemoveDeselected = (item: IListItem) => {
-    console.log(`🦉 ~ de item`, item);
     const newItemsToRemove = itemsToRemove.filter((i) => i.id !== item.id);
     setItemsToRemove(newItemsToRemove);
   };
 
   const handleRemoveItems = () => {
     removeItems("ActivityList", itemsToRemove);
-    console.log(
-      `🦉 ~ itemsToRemove`,
-      removeItems("ActivityList", itemsToRemove)
-    );
   };
 
   return (
