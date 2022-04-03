@@ -6,9 +6,9 @@ import {
   NotDraggingStyle,
 } from "react-beautiful-dnd";
 import style from "../styles/ActivityCard.module.scss";
-import { IListItem } from "./DraggableContainer";
+import { IActivityItem, IListItem } from "./DraggableContainer";
 export interface IActivityCardProps {
-  item: IListItem;
+  item: IActivityItem;
   index: number;
   onRemoveSelected: (item: IListItem) => void;
   onRemoveDeselected: (item: IListItem) => void;
@@ -59,7 +59,7 @@ export function ActivityCard(props: IActivityCardProps) {
             snapshot.isDragging ? style.dragging : "",
           ].join(" ")}
         >
-          {item.content}
+          {item.content} <span> {item?.priorityTotal}</span>
         </div>
       )}
     </Draggable>

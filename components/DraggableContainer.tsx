@@ -1,7 +1,11 @@
 import * as React from "react";
 import { useEffect, useState } from "react";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
-import { getListData, removeItems } from "../hooks/useLocalMemory";
+import {
+  getListData,
+  minuteSinceLastCheck,
+  removeItems,
+} from "../hooks/useLocalMemory";
 import { ActivityCard } from "./ActivityCard";
 export interface IDraggableContainerProps {}
 
@@ -12,14 +16,8 @@ export interface IListItem {
 
 export interface IActivityItem extends IListItem {
   priority: number;
+  priorityTotal: number;
 }
-
-// fake data generator
-const getItems = (count: number) =>
-  Array.from({ length: count }, (v, k) => k).map((k) => ({
-    id: `item-${k}`,
-    content: `item ${k}`,
-  }));
 
 // a little function to help us with reordering the result
 const reorder = (list: IListItem[], startIndex: number, endIndex: number) => {
@@ -64,10 +62,7 @@ export function DraggableContainer(props: IDraggableProps) {
 
   useEffect(() => {
     setItems(getListData("ActivityList"));
-    console.log(
-      `🦉 ~ setItems(getListData("ActivityList"));`,
-      getListData("ActivityList")
-    );
+    console.log(`🦉 ~ hoursSinceLastCheck()`, minuteSinceLastCheck());
   }, [shouldReload]);
 
   const handleRemoveSelected = (item: IListItem) => {

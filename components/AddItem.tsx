@@ -21,6 +21,7 @@ export function AddItem(props: IAddItemProps) {
         id: uuidv4(),
         content: value,
         priority: priority,
+        priorityTotal: priority,
       } as IActivityItem,
     ]);
     onReload();
