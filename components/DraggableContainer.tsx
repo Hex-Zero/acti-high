@@ -71,7 +71,7 @@ export function DraggableContainer(props: IDraggableProps) {
   };
 
   const handleRemoveItems = () => {
-    removeItems("ActivityList", itemsToRemove);
+    setItems(removeItems("ActivityList", itemsToRemove));
   };
 
   return (
