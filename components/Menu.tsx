@@ -1,15 +1,14 @@
 import * as React from "react";
-import { v4 as uuidv4 } from "uuid";
-import { addItems } from "../hooks/useLocalMemory";
 import style from "../styles/Menu.module.scss";
 
 export interface IMenuProps {
   onReload: () => void;
   onRemove: () => void;
+  onAdd: () => void;
 }
 
 export function Menu(props: IMenuProps) {
-  const { onReload, onRemove } = props;
+  const { onReload, onRemove, onAdd } = props;
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleRemoveClick = () => {
@@ -18,13 +17,7 @@ export function Menu(props: IMenuProps) {
 
   const handleAddClick = () => {
     setIsOpen(false);
-    addItems("ActivityList", [
-      {
-        id: uuidv4(),
-        content: uuidv4(),
-      },
-    ]);
-    onReload();
+    onAdd();
   };
   return (
     <div className={style.menuWrapper}>

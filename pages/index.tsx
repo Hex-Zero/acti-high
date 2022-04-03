@@ -10,6 +10,7 @@ import styles from "../styles/Home.module.css";
 const Home: NextPage = () => {
   resetServerContext();
   const [shouldReload, setShouldReload] = useState(false);
+  const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const handleReload = () => {
     setShouldReload(true);
     setTimeout(() => {
@@ -26,8 +27,15 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <DraggableContainer shouldReload={shouldReload} />
-        <Menu onRemove={() => {}} onReload={handleReload}></Menu>
-        <AddItem onAdd={() => {}} isOpen={false}></AddItem>
+        <Menu
+          onAdd={() => setIsAddModalOpen(true)}
+          onRemove={() => {}}
+          onReload={handleReload}
+        ></Menu>
+        <AddItem
+          onClose={() => setIsAddModalOpen(false)}
+          isOpen={isAddModalOpen}
+        ></AddItem>
       </main>
     </div>
   );

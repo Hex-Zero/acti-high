@@ -3,18 +3,18 @@ import style from "../styles/AddItem.module.scss";
 
 export interface IAddItemProps {
   isOpen?: boolean;
-  onAdd: () => void;
+  onClose?: () => void;
 }
 
 export function AddItem(props: IAddItemProps) {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const { isOpen, onClose } = props;
   const [value, setValue] = React.useState("");
 
   const handleAdd = () => {
     console.log("Add item");
   };
   const handleClose = () => {
-    console.log("Close");
+    onClose && onClose();
   };
   return (
     <div className={[style.addItemContainer].join(" ")}>
