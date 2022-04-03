@@ -5,6 +5,7 @@ import {
   getListData,
   minuteSinceLastCheck,
   removeItems,
+  updatePriorityTotals,
 } from "../hooks/useLocalMemory";
 import { ActivityCard } from "./ActivityCard";
 export interface IDraggableContainerProps {}
@@ -63,6 +64,7 @@ export function DraggableContainer(props: IDraggableProps) {
   useEffect(() => {
     setItems(getListData("ActivityList"));
     console.log(`🦉 ~ hoursSinceLastCheck()`, minuteSinceLastCheck());
+    updatePriorityTotals("ActivityList", minuteSinceLastCheck());
   }, [shouldReload]);
 
   const handleRemoveSelected = (item: IListItem) => {
