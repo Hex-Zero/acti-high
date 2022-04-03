@@ -5,7 +5,7 @@ import {
   DraggingStyle,
   NotDraggingStyle,
 } from "react-beautiful-dnd";
-import style from "./ActivityCard.module.scss";
+import style from "../styles/ActivityCard.module.scss";
 import { IListItem } from "./DraggableContainer";
 export interface IActivityCardProps {
   item: IListItem;
