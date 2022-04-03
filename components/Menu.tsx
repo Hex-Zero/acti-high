@@ -12,6 +12,7 @@ export function Menu(props: IMenuProps) {
   const [isOpen, setIsOpen] = React.useState(false);
 
   const handleRemoveClick = () => {
+    setIsOpen(false);
     onRemove();
   };
 

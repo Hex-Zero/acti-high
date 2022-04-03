@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { DragDropContext, Droppable, DropResult } from "react-beautiful-dnd";
 import { getListData, removeItems } from "../hooks/useLocalMemory";
 import { ActivityCard } from "./ActivityCard";
@@ -34,12 +34,14 @@ const getListStyle = (isDraggingOver: Boolean) => ({
 
 interface IDraggableProps {
   shouldReload: boolean;
+  isRemoveActive: boolean;
+  onRemove: () => void;
 }
 
 export function DraggableContainer(props: IDraggableProps) {
-  const { shouldReload } = props;
-  const [items, setItems] = React.useState<IListItem[]>([]);
-  const [itemsToRemove, setItemsToRemove] = React.useState<IListItem[]>([]);
+  const { shouldReload, isRemoveActive, onRemove } = props;
+  const [items, setItems] = useState<IListItem[]>([]);
+  const [itemsToRemove, setItemsToRemove] = useState<IListItem[]>([]);
 
   const handleDragEnd = (result: DropResult) => {
     // dropped outside the list
@@ -72,16 +74,18 @@ export function DraggableContainer(props: IDraggableProps) {
 
   const handleRemoveItems = () => {
     setItems(removeItems("ActivityList", itemsToRemove));
+    onRemove();
   };
 
   return (
     <>
       <div className="draggable-container">
-        <div>
-          Remove Selected
-          <button onClick={handleRemoveItems}>Yes</button>
-        </div>
-
+        {isRemoveActive && (
+          <div>
+            Remove Selected
+            <button onClick={handleRemoveItems}>Yes</button>
+          </div>
+        )}
         <DragDropContext onDragEnd={(e) => handleDragEnd(e)}>
           <Droppable droppableId="droppable">
             {(provided, snapshot) => (
@@ -94,7 +98,7 @@ export function DraggableContainer(props: IDraggableProps) {
                   <ActivityCard
                     onRemoveSelected={handleRemoveSelected}
                     onRemoveDeselected={handleRemoveDeselected}
-                    removeActive={true}
+                    removeActive={isRemoveActive}
                     key={item.id}
                     item={item}
                     index={index}

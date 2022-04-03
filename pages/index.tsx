@@ -11,9 +11,11 @@ const Home: NextPage = () => {
   resetServerContext();
   const [shouldReload, setShouldReload] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+  const [isRemoveActive, setIsRemoveActive] = useState(false);
   const handleReload = () => {
     setShouldReload(!shouldReload);
   };
+
   return (
     <div className={styles.container}>
       <Head>
@@ -23,10 +25,14 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
-        <DraggableContainer shouldReload={shouldReload} />
+        <DraggableContainer
+          onRemove={() => setIsRemoveActive(false)}
+          isRemoveActive={isRemoveActive}
+          shouldReload={shouldReload}
+        />
         <Menu
           onAdd={() => setIsAddModalOpen(true)}
-          onRemove={() => {}}
+          onRemove={() => setIsRemoveActive(true)}
           onReload={handleReload}
         ></Menu>
         <AddItem
