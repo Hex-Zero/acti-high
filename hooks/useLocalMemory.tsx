@@ -33,13 +33,11 @@ export function addItems(listId: string, items: any[]) {
 
 export function updatePriorityTotals(listId: string, multiplier: number = 1) {
   const list = getListData(listId);
-
   list.map((item) => {
     item.priorityTotal = item.priority * (multiplier + 1);
     return item;
   });
   setListData(listId, list);
-  console.log(`🦉 ~ list`, list);
   return list;
 }
 
@@ -60,8 +58,6 @@ export function minuteSinceLastCheck(): number {
   const now = new Date();
   const diff = now.getTime() - lastCheckDate.getTime();
   const minute = Math.floor(diff / (1000 * 60 * 1));
-  console.log(`🦉 ~ minute`, minute);
-
   // setLastCheckDate(now);
   return minute;
 }

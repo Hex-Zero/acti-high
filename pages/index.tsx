@@ -12,6 +12,7 @@ const Home: NextPage = () => {
   const [shouldReload, setShouldReload] = useState(false);
   const [isAddModalOpen, setIsAddModalOpen] = useState(false);
   const [isRemoveActive, setIsRemoveActive] = useState(false);
+
   const handleReload = () => {
     setShouldReload(!shouldReload);
   };

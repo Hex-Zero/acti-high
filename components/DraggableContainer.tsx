@@ -45,6 +45,7 @@ export function DraggableContainer(props: IDraggableProps) {
   const { shouldReload, isRemoveActive, onRemove } = props;
   const [items, setItems] = useState<IListItem[]>([]);
   const [itemsToRemove, setItemsToRemove] = useState<IListItem[]>([]);
+  const [timer, setTimer] = useState<boolean>(false);
 
   const handleDragEnd = (result: DropResult) => {
     // dropped outside the list
@@ -57,15 +58,16 @@ export function DraggableContainer(props: IDraggableProps) {
       result.source.index,
       result.destination.index
     );
-
     setItems(resultingItems);
   };
 
   useEffect(() => {
     setItems(getListData("ActivityList"));
-    console.log(`🦉 ~ hoursSinceLastCheck()`, minuteSinceLastCheck());
     updatePriorityTotals("ActivityList", minuteSinceLastCheck());
-  }, [shouldReload]);
+    setTimeout(() => {
+      setTimer(!timer);
+    }, 1000);
+  }, [shouldReload, timer]);
 
   const handleRemoveSelected = (item: IListItem) => {
     const newItemsToRemove = [...itemsToRemove, item];
