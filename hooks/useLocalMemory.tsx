@@ -66,3 +66,12 @@ export function minuteSinceLastCheck(): number {
   }
   return minute;
 }
+
+export function resetActivityPriorityTotal(listId: string, itemId: string) {
+  const list = getListData(listId);
+  const item = list.find((i) => i.id === itemId);
+  if (item) {
+    item.priorityTotal = item.priority;
+    setListData(listId, list);
+  }
+}

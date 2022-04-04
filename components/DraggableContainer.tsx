@@ -109,6 +109,7 @@ export function DraggableContainer(props: IDraggableProps) {
                     key={item.id}
                     item={item}
                     index={index}
+                    onReload={() => setTimer(!timer)}
                   />
                 ))}
                 {provided.placeholder}

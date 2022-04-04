@@ -5,6 +5,7 @@ import {
   DraggingStyle,
   NotDraggingStyle,
 } from "react-beautiful-dnd";
+import { resetActivityPriorityTotal } from "../hooks/useLocalMemory";
 import style from "../styles/ActivityCard.module.scss";
 import { IActivityItem, IListItem } from "./DraggableContainer";
 export interface IActivityCardProps {
@@ -13,6 +14,7 @@ export interface IActivityCardProps {
   onRemoveSelected: (item: IListItem) => void;
   onRemoveDeselected: (item: IListItem) => void;
   removeActive: boolean;
+  onReload: () => void;
 }
 
 const grid = 8;
@@ -29,8 +31,14 @@ const getItemStyle = (
 });
 
 export function ActivityCard(props: IActivityCardProps) {
-  const { item, index, onRemoveSelected, onRemoveDeselected, removeActive } =
-    props;
+  const {
+    item,
+    index,
+    onRemoveSelected,
+    onRemoveDeselected,
+    removeActive,
+    onReload,
+  } = props;
   const [shouldRemove, setShouldRemove] = useState(false);
 
   const handleItemClick = () => {
@@ -40,6 +48,11 @@ export function ActivityCard(props: IActivityCardProps) {
     } else {
       onRemoveSelected(item);
     }
+  };
+
+  const handleActivityChecked = () => {
+    resetActivityPriorityTotal("ActivityList", item.id);
+    onReload();
   };
   return (
     <Draggable key={item.id} draggableId={item.id} index={index}>
@@ -60,7 +73,10 @@ export function ActivityCard(props: IActivityCardProps) {
           ].join(" ")}
         >
           {item.content} <span> {item?.priorityTotal}</span>
-          <div className={[style.checkMark].join(" ")}></div>
+          <div
+            onClick={handleActivityChecked}
+            className={[style.checkMark].join(" ")}
+          ></div>
         </div>
       )}
     </Draggable>
