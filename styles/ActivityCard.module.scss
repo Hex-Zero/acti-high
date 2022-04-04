@@ -1,12 +1,43 @@
-.activityCard{
-    background-color: #ffc3a0;
-    
+.activityCard {
+  background-color: #ffc3a0;
+  position: relative;
   padding: 16px;
   margin: 0 0 8px 0;
-    &.remove{
-        background-color: rebeccapurple;
-    }
-    &.dragging{
-        background-color: lightgreen;
-    }
+  &.remove {
+    background-color: rebeccapurple;
+  }
+  &.dragging {
+    background-color: lightgreen;
+  }
+}
+
+.checkMark {
+  position: absolute;
+  top: 10px;
+  right: 25px;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  &::after {
+    content: "";
+    position: absolute;
+    top: 15%;
+    left: 68%;
+    transform: rotateZ(45deg);
+    width: 10px;
+    height: 30px;
+    background-color: #87e97e;
+  }
+  &::before {
+    content: "";
+    position: absolute;
+
+    top: 34%;
+    left: 24%;
+    transform: rotateZ(-45deg);
+
+    width: 10px;
+    height: 20px;
+    background-color: #87e97e;
+  }
 }

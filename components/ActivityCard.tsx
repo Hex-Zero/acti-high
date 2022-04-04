@@ -60,6 +60,7 @@ export function ActivityCard(props: IActivityCardProps) {
           ].join(" ")}
         >
           {item.content} <span> {item?.priorityTotal}</span>
+          <div className={[style.checkMark].join(" ")}></div>
         </div>
       )}
     </Draggable>
