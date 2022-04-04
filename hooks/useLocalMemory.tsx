@@ -40,6 +40,7 @@ export function updatePriorityTotals(listId: string, multiplier: number) {
     item.priorityTotal += item.priority * (multiplier + 1);
     return item;
   });
+  list.sort((a, b) => b.priorityTotal - a.priorityTotal);
   setListData(listId, list);
 }
 
