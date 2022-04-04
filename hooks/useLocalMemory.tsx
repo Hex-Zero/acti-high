@@ -31,14 +31,16 @@ export function addItems(listId: string, items: any[]) {
   return newList;
 }
 
-export function updatePriorityTotals(listId: string, multiplier: number = 1) {
+export function updatePriorityTotals(listId: string, multiplier: number) {
+  if (!multiplier) {
+    return;
+  }
   const list = getListData(listId);
   list.map((item) => {
-    item.priorityTotal = item.priority * (multiplier + 1);
+    item.priorityTotal += item.priority * (multiplier + 1);
     return item;
   });
   setListData(listId, list);
-  return list;
 }
 
 export function setLastCheckDate(date: Date = new Date()) {
@@ -58,6 +60,8 @@ export function minuteSinceLastCheck(): number {
   const now = new Date();
   const diff = now.getTime() - lastCheckDate.getTime();
   const minute = Math.floor(diff / (1000 * 60 * 1));
-  // setLastCheckDate(now);
+  if (minute !== 0) {
+    setLastCheckDate(now);
+  }
   return minute;
 }
