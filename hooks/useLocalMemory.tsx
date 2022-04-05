@@ -1,3 +1,5 @@
+import { IActivityItem } from "../components/DraggableContainer";
+
 export function getListData(ListId: string): any[] {
   return JSON.parse(window.localStorage?.getItem(ListId) || "[]");
 }
@@ -36,7 +38,7 @@ export function updatePriorityTotals(listId: string, multiplier: number) {
     return;
   }
   const list = getListData(listId);
-  list.map((item) => {
+  list.map((item: IActivityItem) => {
     item.priorityTotal += item.priority * (multiplier + 1);
     return item;
   });
