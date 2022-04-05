@@ -1,7 +1,12 @@
 import { IActivityItem } from "../components/DraggableContainer";
 
 export function getListData(ListId: string): any[] {
-  return JSON.parse(window.localStorage?.getItem(ListId) || "[]");
+  const data: IActivityItem[] = JSON.parse(
+    window.localStorage?.getItem(ListId) || "[]"
+  );
+  return data.sort(
+    (a: IActivityItem, b: IActivityItem) => b.priorityTotal - a.priorityTotal
+  );
 }
 
 export function setListData(listId: string, list: any[]) {
