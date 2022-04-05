@@ -7,6 +7,7 @@ import {
   removeItems,
   updatePriorityTotals,
 } from "../hooks/useLocalMemory";
+import style from "../styles/DraggableContainer.module.scss";
 import { ActivityCard } from "./ActivityCard";
 export interface IDraggableContainerProps {}
 
@@ -45,7 +46,6 @@ export function DraggableContainer(props: IDraggableProps) {
   const { shouldReload, isRemoveActive, onRemove } = props;
   const [items, setItems] = useState<IListItem[]>([]);
   const [itemsToRemove, setItemsToRemove] = useState<IListItem[]>([]);
-  const [timer, setTimer] = useState<boolean>(false);
   const [reload, setReload] = useState<boolean>(false);
 
   const handleDragEnd = (result: DropResult) => {
@@ -65,10 +65,10 @@ export function DraggableContainer(props: IDraggableProps) {
   useEffect(() => {
     updatePriorityTotals("ActivityList", minuteSinceLastCheck());
     setTimeout(() => {
-      setTimer(!timer);
+      setReload(!reload);
     }, 1000);
     setItems(getListData("ActivityList"));
-  }, [shouldReload, timer, reload]);
+  }, [shouldReload, reload]);
 
   const handleRemoveSelected = (item: IListItem) => {
     const newItemsToRemove = [...itemsToRemove, item];
@@ -87,7 +87,7 @@ export function DraggableContainer(props: IDraggableProps) {
 
   return (
     <>
-      <div className="draggable-container">
+      <div className={[style.container].join(" ")}>
         {isRemoveActive && (
           <div>
             Remove Selected
@@ -100,7 +100,10 @@ export function DraggableContainer(props: IDraggableProps) {
               <div
                 {...provided.droppableProps}
                 ref={provided.innerRef}
-                style={getListStyle(snapshot.isDraggingOver)}
+                className={[
+                  style.droppable,
+                  snapshot.isDraggingOver ? style.isDragging : "",
+                ].join(" ")}
               >
                 {items.map((item, index) => (
                   <ActivityCard

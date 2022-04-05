@@ -1,5 +1,12 @@
+$Check-colour: white;
+
 .activityCard {
-  background-color: #ffc3a0;
+  color: white;
+  background: linear-gradient(
+    179.58deg,
+    rgba(255, 64, 22, 0.5) 12.86%,
+    rgba(255, 230, 9, 0.4) 96.53%
+  );
   position: relative;
   padding: 16px;
   margin: 0 0 8px 0;
@@ -26,7 +33,7 @@
     transform: rotateZ(45deg);
     width: 10px;
     height: 30px;
-    background-color: #87e97e;
+    background-color: $Check-colour;
   }
   &::before {
     content: "";
@@ -38,6 +45,6 @@
 
     width: 10px;
     height: 20px;
-    background-color: #87e97e;
+    background-color: $Check-colour;
   }
 }
