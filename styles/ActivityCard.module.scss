@@ -4,18 +4,25 @@ $Check-colour: white;
   color: white;
   background: linear-gradient(
     179.58deg,
-    rgba(255, 64, 22, 0.5) 12.86%,
-    rgba(255, 230, 9, 0.4) 96.53%
+    rgb(255, 150, 127) 12.86%,
+    rgb(255, 239, 92) 96.53%
   );
+  border-radius: 10px;
   position: relative;
   padding: 16px;
   margin: 0 0 8px 0;
+
   &.remove {
     background-color: rebeccapurple;
   }
   &.dragging {
     background-color: lightgreen;
   }
+}
+
+.text {
+  font-weight: 700;
+  font-size: 1.25rem;
 }
 
 .checkMark {

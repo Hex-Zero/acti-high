@@ -72,7 +72,9 @@ export function ActivityCard(props: IActivityCardProps) {
             snapshot.isDragging ? style.dragging : "",
           ].join(" ")}
         >
-          {item.content} <span> {item?.priorityTotal}</span>
+          <div className={[style.text].join(" ")}>
+            {item.content} <span> {item?.priorityTotal}</span>
+          </div>
           <div
             onClick={handleActivityChecked}
             className={[style.checkMark].join(" ")}
