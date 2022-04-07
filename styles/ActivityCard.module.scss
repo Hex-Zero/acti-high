@@ -2,14 +2,10 @@ $Check-colour: white;
 
 .activityCard {
   color: white;
-  background: linear-gradient(
-    179.58deg,
-    rgb(255, 150, 127) 12.86%,
-    rgb(255, 239, 92) 96.53%
-  );
+  background: linear-gradient(179.58deg, #ffa591 12.86%, #fff16f 96.53%);
   border-radius: 10px;
   position: relative;
-  padding: 16px;
+  padding: 1rem 2rem;
   margin: 0 0 8px 0;
 
   &.remove {
