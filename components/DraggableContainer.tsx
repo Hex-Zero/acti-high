@@ -14,6 +14,8 @@ export interface IDraggableContainerProps {}
 export interface IListItem {
   id: string;
   content: string;
+  priority: number;
+  priorityTotal: number;
 }
 
 export interface IActivityItem extends IListItem {
