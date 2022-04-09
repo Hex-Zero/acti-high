@@ -6,6 +6,7 @@ import {
   NotDraggingStyle,
 } from "react-beautiful-dnd";
 import { resetActivityPriorityTotal } from "../hooks/useLocalMemory";
+import { getClasses } from "../hooks/useUtils";
 import style from "../styles/ActivityCard.module.scss";
 import { IActivityItem, IListItem } from "./DraggableContainer";
 export interface IActivityCardProps {
@@ -66,11 +67,11 @@ export function ActivityCard(props: IActivityCardProps) {
             snapshot.isDragging,
             provided.draggableProps.style
           )}
-          className={[
+          className={getClasses(
             style.activityCard,
-            shouldRemove ? style.remove : "",
-            snapshot.isDragging ? style.dragging : "",
-          ].join(" ")}
+            shouldRemove && style.remove,
+            snapshot.isDragging && style.dragging
+          )}
         >
           <div className={[style.text].join(" ")}>
             {item.content} <span> {item?.priorityTotal}</span>
