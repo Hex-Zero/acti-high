@@ -1,7 +1,7 @@
 $Check-colour: white;
 
 .activityCard {
-  color: white;
+  color: #ffffff;
   background: linear-gradient(179.58deg, #ffa591 12.86%, #fff16f 96.53%);
   border-radius: 10px;
   position: relative;
@@ -9,10 +9,10 @@ $Check-colour: white;
   margin: 0 0 8px 0;
 
   &.remove {
-    background-color: rgb(255, 89, 158);
+    background: linear-gradient(179.58deg, #ffa591 12.86%, #ff5f9c 96.53%);
   }
   &.dragging {
-    background-color: lightgreen;
+    background: linear-gradient(179.58deg, #91fff6 12.86%, #23ff2e 96.53%);
   }
 }
 
