@@ -9,6 +9,7 @@ export interface IPopoverProps {
 export function Popover(props: IPopoverProps) {
   const [isOpen, setIsOpen] = React.useState(false);
   const [targetNode, setTargetNode] = React.useState<HTMLElement | null>(null);
+  const popoverTarget = React.useRef<HTMLDivElement>(null);
 
   const openPopover = (node: HTMLElement) => {
     setTargetNode(node);
@@ -43,7 +44,7 @@ export function Popover(props: IPopoverProps) {
 
   return (
     <div className="popover-container">
-      {props.targetNode}
+      <div ref={popoverTarget}>{props.targetNode}</div>
       {isOpen && (
         <div className="popover">
           <div className="popover-content">{props.popoverContent}</div>
